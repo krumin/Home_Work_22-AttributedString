@@ -46,16 +46,11 @@ class ViewController: UIViewController {
     imageViewTwo.addGestureRecognizer(tapViewTwo)
     imageViewThree.addGestureRecognizer(tapViewThree)
     imageViewFour.addGestureRecognizer(tapViewFour)
-  
+    
     prepareTextAttributed()
   }
   
   @objc func imageDidTap(sender: UITapGestureRecognizer) {
-    selectedTag = sender.view?.tag ?? 0
-    print(sender.view!.tag)
-  }
-  
-  @IBAction func chooseAction(_ sender: Any) {
     showChoose { [weak self] source in
       guard let source = source else { return }
       
@@ -74,7 +69,10 @@ class ViewController: UIViewController {
       self?.present(picker, animated: true)
       self?.imagePicker = picker
     }
+    selectedTag = sender.view?.tag ?? 0
+    print(sender.view!.tag)
   }
+  
   
   private func showChoose(choosen: @escaping (Source?) -> Void) {
     let alert = UIAlertController(title: "Choose source", message: nil, preferredStyle: .actionSheet)
@@ -104,37 +102,37 @@ class ViewController: UIViewController {
     return NSAttributedString(string: text, attributes: attributed)
   }
   
-func prepareTextAttributed() {
-  let attrStringOne = NSMutableAttributedString()
-  let attrStringTwo = NSMutableAttributedString()
-  let attrStringThree = NSMutableAttributedString()
-  let attrStringFour = NSMutableAttributedString()
-  
-  let firstOneString = createAttributedString(color: .blue, text: "1")
-  let firstTwoString = createAttributedString(color: .red, text: "2")
-  let firstThreeString = createAttributedString(color: .green, text: "3")
-  let firstFourString = createAttributedString(color: .brown, text: "4")
-  
-  let secondOneString = createAttributedString(color: .brown, text: "первый")
-  let secondTwoString = createAttributedString(color: .green, text: "второй")
-  let secondThreeString = createAttributedString(color: .red, text: "третий")
-  let secondFourString = createAttributedString(color: .blue, text: "четвертый")
-  
-  attrStringOne.append(firstOneString)
-  attrStringTwo.append(firstTwoString)
-  attrStringThree.append(firstThreeString)
-  attrStringFour.append(firstFourString)
-  
-  attrStringOne.append(secondOneString)
-  attrStringTwo.append(secondTwoString)
-  attrStringThree.append(secondThreeString)
-  attrStringFour.append(secondFourString)
-  
-  labelOne.attributedText = attrStringOne
-  labelTwo.attributedText = attrStringTwo
-  labelThree.attributedText = attrStringThree
-  labelFour.attributedText = attrStringFour
-  
+  func prepareTextAttributed() {
+    let attrStringOne = NSMutableAttributedString()
+    let attrStringTwo = NSMutableAttributedString()
+    let attrStringThree = NSMutableAttributedString()
+    let attrStringFour = NSMutableAttributedString()
+    
+    let firstOneString = createAttributedString(color: .blue, text: "1")
+    let firstTwoString = createAttributedString(color: .red, text: "2")
+    let firstThreeString = createAttributedString(color: .green, text: "3")
+    let firstFourString = createAttributedString(color: .brown, text: "4")
+    
+    let secondOneString = createAttributedString(color: .brown, text: "первый")
+    let secondTwoString = createAttributedString(color: .green, text: "второй")
+    let secondThreeString = createAttributedString(color: .red, text: "третий")
+    let secondFourString = createAttributedString(color: .blue, text: "четвертый")
+    
+    attrStringOne.append(firstOneString)
+    attrStringTwo.append(firstTwoString)
+    attrStringThree.append(firstThreeString)
+    attrStringFour.append(firstFourString)
+    
+    attrStringOne.append(secondOneString)
+    attrStringTwo.append(secondTwoString)
+    attrStringThree.append(secondThreeString)
+    attrStringFour.append(secondFourString)
+    
+    labelOne.attributedText = attrStringOne
+    labelTwo.attributedText = attrStringTwo
+    labelThree.attributedText = attrStringThree
+    labelFour.attributedText = attrStringFour
+    
   }
   
 }
